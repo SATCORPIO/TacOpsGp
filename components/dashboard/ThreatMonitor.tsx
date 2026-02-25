@@ -1,3 +1,5 @@
+"use client";
+
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { useState, useEffect } from "react";
 import { mockThreat } from "@/lib/mockData";
@@ -7,11 +9,11 @@ export default function ThreatMonitor() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setData([{ ...data[0], value: Math.random() * 100 }]);
+      setData([{ name: "Threat", value: Math.random() * 100 }]);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [data]);
+  }, []);
 
   return (
     <div className="bg-[#0B0F14] border border-[#9F8750] p-4">
