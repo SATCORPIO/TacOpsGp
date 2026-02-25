@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { mockStats } from "@/lib/mockData";
@@ -12,7 +14,7 @@ export default function StatPanel() {
         operations: prev.operations + Math.floor(Math.random() * 3),
         assets: prev.assets + Math.floor(Math.random() * 2),
         channels: prev.channels,
-        threat: Math.min(100, prev.threat + (Math.random() > 0.7 ? 5 : -3)),
+        threat: Math.max(0, Math.min(100, prev.threat + (Math.random() > 0.7 ? 5 : -3))),
       }));
     }, 3000);
 
@@ -59,7 +61,7 @@ function ThreatLevel({ value }: { value: number }) {
     >
       <p className="text-xs text-[#6B7280] uppercase">Threat Level</p>
       <p className="text-lg" style={{ color }}>
-        {value}%
+        {Math.round(value)}%
       </p>
     </motion.div>
   );
